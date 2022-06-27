@@ -99,6 +99,19 @@ router.post('/login', async (req, res) => {
     })
 })
 
+router.get('/search/:name', (req, res) => {
+    let movie = req.params['name']
+    fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${movie}`)
+    .then(res => res.json())
+    .then((data, error) => {
+        if(error){
+            console.log(error)
+        }else{
+            res.json({data})
+        }
+    })
+})
+
 
 
 module.exports = router
