@@ -54,6 +54,8 @@ router.get('/mostpopular', verifyToken, (req, res) => {
 
 router.post('/register', async (req, res) => {
     const user = {
+        first_name: req.body.firstname,
+        last_name: req.body.lastname,
         username: req.body.regusername,
         password: req.body.regpassword
     }
@@ -66,7 +68,7 @@ router.post('/register', async (req, res) => {
         //hash password and store it
         bcrypt.genSalt(5, function(err, salt) {
             bcrypt.hash(user.password, salt, function(err, hash) {
-                db.none('insert into users (username, password) values ($1, $2)', [user.username, hash])
+                db.none('insert into users (first_name, last_name, username, password) values ($1, $2, $3, $4)', [user.first_name, user.last_name, user.username, hash])
             });
         });
         res.json({
@@ -78,8 +80,8 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     const user = {
-        username: req.body.loginusername,
-        password: req.body.loginpassword
+        username: req.body.username,
+        password: req.body.password
     }
     let userCheck = await db.any('select * from users where username = $1', [user.username])
     let hashedPassword = userCheck[0].password
@@ -99,17 +101,24 @@ router.post('/login', async (req, res) => {
     })
 })
 
-router.get('/search/:name', (req, res) => {
-    let movie = req.params['name']
-    fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${movie}`)
-    .then(res => res.json())
-    .then((data, error) => {
+router.get('/search/:name', verifyToken, (req, res) => {
+    jwt.verify(req.token, 'secretkey', (error, authData) => {
         if(error){
-            console.log(error)
+            res.sendStatus(403)
         }else{
-            res.json({data})
+            let movie = req.params['name']
+            fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${movie}`)
+            .then(res => res.json())
+            .then((data, error) => {
+                if(error){
+                    console.log(error)
+                }else{
+                    res.json({data})
+                }
+            })
         }
     })
+    
 })
 
 
