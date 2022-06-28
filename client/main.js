@@ -1,12 +1,12 @@
+import './style.css'
 import Alpine from 'alpinejs';
 import { Login } from './login';
-import Fun from './fun';
+import './movies.css'
 
 window.Alpine = Alpine;
 
 
 Alpine.data('login', Login);
-Alpine.data('fun', Fun);
 
 Alpine.start();
 

@@ -8,5 +8,66 @@
   </head>
   <body>
     <script type="module" src="/main.js"></script>
+    <section class="access">
+      <section class="login">
+        <h3>Login</h3>
+        <form action="/login" method="post" class="login-form">
+          <input type="text" name="username" id="username" placeholder="Please enter username">
+          <input type="password" name="password" id="password" placeholder="Please enter password">
+          <button>Login</button>
+          <p>Not registered? Register here</p>
+        </form>
+      </section>
+      <section class="register">
+        <h3 class="access-heading">Register</h3>
+        <form action="/register" method="post" class="reg-form">
+          <input type="text" name="firstname" id="firstname" placeholder="First Name">
+          <input type="text" name="lastname" id="lastname" placeholder="Last Name">
+          <input type="text" name="regusername" id="regusername" placeholder="Please enter username">
+          <input type="password" name="regpassword" id="regpassword" placeholder="Please enter password">
+          <button>Register</button>
+        </form>
+      </section>
+    </section>
+    <main>
+      <section class="movies">
+        <div class="movie card">
+          <div class="original-title">The movie about wings</div>
+          <div class="image">
+            <img src="./wings/chicken-1559579_1920.jpg" alt="wings movie" class="poster-path">
+          </div>
+          <div class="bottom-buttons">
+            <button class="favorite">Add to favorites</button>
+          </div>
+        </div>
+        <div class="movie card">
+          <div class="original-title">The movie about wings</div>
+          <div class="image">
+            <img src="./wings/chicken-1559579_1920.jpg" alt="wings movie" class="poster-path">
+          </div>
+          <div class="bottom-buttons">
+            <button class="favorite">Add to favorites</button>
+          </div>
+        </div>
+        <div class="movie card">
+          <div class="original-title">The movie about wings</div>
+          <div class="image">
+            <img src="./wings/chicken-1559579_1920.jpg" alt="wings movie" class="poster-path">
+          </div>
+          <div class="bottom-buttons">
+            <button class="favorite">Add to favorites</button>
+          </div>
+        </div>
+        <div class="movie card">
+          <div class="original-title">The movie about wings</div>
+          <div class="image">
+            <img src="./wings/chicken-1559579_1920.jpg" alt="wings movie" class="poster-path">
+          </div>
+          <div class="bottom-buttons">
+            <button class="favorite">Add to favorites</button>
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
